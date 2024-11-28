@@ -1,20 +1,41 @@
 package com.example.canvas
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var circleView: CircleView
+    private lateinit var upButton: Button
+    private lateinit var downButton: Button
+    private lateinit var leftButton: Button
+    private lateinit var rightButton: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_main)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        circleView = findViewById(R.id.circleView)
+        upButton = findViewById(R.id.upButton)
+        downButton = findViewById(R.id.downButton)
+        leftButton = findViewById(R.id.leftButton)
+        rightButton = findViewById(R.id.rightButton)
+
+        upButton.setOnClickListener {
+            circleView.moveUp()
+        }
+
+        downButton.setOnClickListener {
+            circleView.moveDown()
+        }
+
+        leftButton.setOnClickListener {
+            circleView.moveLeft()
+        }
+
+        rightButton.setOnClickListener {
+            circleView.moveRight()
         }
     }
 }
